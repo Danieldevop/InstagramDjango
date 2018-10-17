@@ -1,20 +1,27 @@
 """ User Views """
 
 # Django
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 
 def login_view(request):
-	""" Login View """
-	if request.method == 'POST':
-		username = request.POST['username']
-		password = request.POST['password']
-		user = authenticate(request, username=username, password=password)
-		if user:
-			login(request, user)
-			return redirect('feed')
-		else:
-			return render(request, 'users/login.html', {'error': 'Invalid Username or Password'})
+    """ Login View """
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            return redirect('feed')
+        else:
+            return render(request, 'users/login.html', {'error': 'Invalid Username or Password'})
 
-	return render(request, 'users/login.html')
+    return render(request, 'users/login.html')
+
+@login_required
+def logout_view(request):
+    """ Logout View """
+    logout(request)
+    return redirect('login')
