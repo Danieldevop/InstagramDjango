@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'lifeinvader.middleware.ProfileCompletionMiddleware',
+    #'lifeinvader.middleware.ProfileCompletionMiddleware',
 ]
 
 ROOT_URLCONF = 'lifeinvader.urls'
@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'lifeinvader.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'socialnet',
+        'USER': 'danieldevop',
+        'HOST': 'localhost',
+        'PASSWORD': 'daniel',
+        'PORT': '',
     }
 }
 
